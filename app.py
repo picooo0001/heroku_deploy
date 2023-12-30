@@ -1,5 +1,5 @@
 from flask import Flask, session, redirect, url_for, request, render_template, jsonify, send_from_directory
-from werkzeug.security import check_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 from functools import wraps
 #from input_to_database import DataWriter
 #from orm import Tour, Address, Client, User
@@ -146,6 +146,26 @@ def logout():
     except Exception as e:
         #logger.error(e)
         return jsonify({'error': str(e)}), 500
+    
+@app.route('/create_user', methods=['POST'])
+def create_user():
+    data = request.json
+    username = data.get('username')
+    password = data.get('password')
+
+    hashed_password = generate_password_hash(password)
+    print(len(hashed_password))
+
+    new_user = User(username=username, password_hash=hashed_password)
+
+    try:
+        db.session.add(new_user)
+        db.session.commit()
+        return jsonify({'message': 'Benutzer erfolgreich erstellt'}), 201
+    except Exception as e:
+        print(e)
+        db.session.rollback()
+        return jsonify({'message': 'Fehler beim Erstellen des Benutzers'}), 500
 
 @app.route('/create_tour', methods=['POST'])
 @login_required
