@@ -9,6 +9,7 @@ from datetime import datetime, timedelta, time
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from sqlalchemy.orm import joinedload
+from sqlalchemy import and_
 
 
 #log_config = LogConfig()
@@ -209,9 +210,39 @@ def create_tour():
             firmenname = firmenname
         )
 
+        existing_address = db.session.query(Address).filter(
+             and_(
+                  Address.strasse == new_address.strasse,
+                  Address.hausnr == new_address.hausnr,
+                  Address.plz == new_address.plz,
+                  Address.ort == new_address.ort
+             )
+        ).first()
+
+        if existing_address:
+            new_address = existing_address
+        else:
+            new_address = new_address
+
+        existing_client = db.session.query(Client).filter(and_(
+             Client.firmenname == new_client.firmenname
+        )).first()
+
+        if existing_client:
+            new_client = existing_client
+        else:
+            new_client = new_client
+        
         db.session.add(new_address)
         db.session.add(new_client)
         db.session.commit()
+
+        client_id = new_client.client_id
+        address_id = new_address.address_id
+
+        new_tour.client_id = client_id
+        new_tour.address_id = address_id
+        
         db.session.add(new_tour)
         db.session.commit()
 
