@@ -1,0 +1,95 @@
+/* Stil für Erfolgsmeldungen */
+.alert-success {
+  position: fixed;
+  bottom: 0px; /* Ändere den Wert hier, um die Höhe anzupassen */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  max-width: 80%; /* Maximale Breite des Kästchens */
+  text-align: center;
+  z-index: 1000;
+}
+
+/* Stil für Fehlermeldungen */
+.alert-danger {
+  position: fixed;
+  bottom: 0px; /* Ändere den Wert hier, um die Höhe anzupassen */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #FF0000;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  max-width: 80%; /* Maximale Breite des Kästchens */
+  text-align: center;
+  z-index: 1000;
+}
+
+/* Stile für das Formular */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.form-signin {
+  width: 80%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: transparent;
+}
+
+.form-signin img {
+  display: block;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+}
+
+.form-signin label {
+  display: none;
+}
+
+.form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+/* Stile für den Text */
+.h3 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+#notification-container {
+  position: absolute;
+  bottom: 125px; /* Passe den Abstand nach Bedarf an */
+  left: 50%; /* Horizontale Ausrichtung in der Mitte */
+  transform: translateX(-50%);
+  z-index: 1000; /* Stelle sicher, dass das Popup über anderen Inhalten liegt */
+  width: 100%; /* Breite des Containers */
+  max-width: 500px; /* Maximal erlaubte Breite */
+}
