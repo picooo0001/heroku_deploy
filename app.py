@@ -7,6 +7,7 @@ from functools import wraps
 from datetime import datetime, timedelta, time
 #from log_config import LogConfig
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from sqlalchemy.orm import joinedload
 
 
@@ -33,6 +34,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://qsemmazypbyicx:15bc5be25ab
 app.secret_key = 'supersecretkey'
 
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 class Tour(db.Model):
     """Tabelle für Touren."""
