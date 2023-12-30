@@ -41,8 +41,8 @@ class Tour(db.Model):
     __tablename__ = 'tour'
 
     tour_id = db.Column(db.Integer,primary_key=True, autoincrement=True)
-    address_id = db.Column(db.SmallInteger, db.ForeignKey('address.address_id'))
-    client_id = db.Column(db.SmallInteger, db.ForeignKey('client.client_id'))
+    address_id = db.Column(db.Integer, db.ForeignKey('address.address_id'))
+    client_id = db.Column(db.Integer, db.ForeignKey('client.client_id'))
     date = db.Column(db.Date)
     kolonne_type = db.Column(db.VARCHAR(255))
     private = db.Column(db.VARCHAR(225))
@@ -75,7 +75,7 @@ class Client(db.Model):
     firmenname = db.Column(db.VARCHAR(255))
     
     tours = db.relationship("Tour")
-    
+
 class User(db.Model):
     """Tabelle für Login Daten"""
     __tablename__ = 'users'
