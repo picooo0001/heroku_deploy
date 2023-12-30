@@ -168,6 +168,7 @@ def create_user():
         return jsonify({'message': 'Fehler beim Erstellen des Benutzers'}), 500
 
 @app.route('/create_tour', methods=['POST'])
+@login_required
 def create_tour():
     """
     Erstellt eine neue Tour, die auf den Usereingaben basiert.
@@ -211,6 +212,7 @@ def create_tour():
         db.session.add(new_address)
         db.session.add(new_client)
 
+        db.session.commit()
         #logger.info("Tour successfully created!")
         return jsonify({'message': 'Tour successfully created!'})
             
