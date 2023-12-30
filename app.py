@@ -41,7 +41,7 @@ class Tour(db.Model):
     __tablename__ = 'tour'
 
     tour_id = db.Column(db.Integer,primary_key=True, autoincrement=True)
-    address_id = db.Column(db.Integer, db.ForeignKey('addres.address_id'))
+    address_id = db.Column(db.Integer, db.ForeignKey('address.address_id'))
     client_id = db.Column(db.Integer, db.ForeignKey('client.client_id'))
     date = db.Column(db.Date)
     kolonne_type = db.Column(db.VARCHAR(255))
