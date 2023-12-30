@@ -10,6 +10,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from sqlalchemy.orm import joinedload
 from sqlalchemy import and_
+from datetime import datetime, timedelta, time
 
 
 #log_config = LogConfig()
@@ -196,7 +197,8 @@ def create_tour():
             kolonne_type=kolonne,
             further_info=info,
             private=private,
-            zeitbedarf=zeitbedarf
+            zeitbedarf=zeitbedarf,
+            start_time = "08:00:00"
         )
 
         new_address = Address(
@@ -242,7 +244,7 @@ def create_tour():
 
         new_tour.client_id = client_id
         new_tour.address_id = address_id
-        
+
         db.session.add(new_tour)
         db.session.commit()
 
@@ -308,6 +310,7 @@ def get_tours():
     
     except Exception as e:
         #logger.error(e)
+        print(e)
         return jsonify({'error': str(e)}), 500
 
 @app.route('/update_duration/<int:eventID>', methods=['POST'])
