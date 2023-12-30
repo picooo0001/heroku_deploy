@@ -48,9 +48,8 @@ class Tour(db.Model):
     zeitbedarf = db.Column(db.Numeric(3,2))
     start_time = db.Column(db.Time)
 
-    client = db.relationship("Client", back_populates="tours")
-    address = db.relationship("Address")
-
+    address = db.relationship("Address", backref="tour")
+    client = db.relationship("Client", backref="tour")
 
     def __repr__(self):
         """Gibt eine lesbare Repräsentation der Tour-Tabelle zurück."""
@@ -66,6 +65,8 @@ class Address(db.Model):
     plz = db.Column(db.Integer)
     ort = db.Column(db.VARCHAR(100))
 
+    tour_id = db.Column(db.Integer, db.ForeignKey('tour.tour_id'))
+
 class Client(db.Model):
     """Tabelle für Kunden."""
     __tablename__ = 'client'
@@ -73,7 +74,7 @@ class Client(db.Model):
     client_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     firmenname = db.Column(db.VARCHAR(255))
     
-    tours = db.relationship("Tour")
+    tour_id = db.Column(db.Integer, db.ForeignKey('tour.tour_id'))
 
 class User(db.Model):
     """Tabelle für Login Daten"""
