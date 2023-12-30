@@ -209,11 +209,12 @@ def create_tour():
             firmenname = firmenname
         )
 
-        db.session.add(new_tour)
         db.session.add(new_address)
         db.session.add(new_client)
-
         db.session.commit()
+        db.session.add(new_tour)
+        db.session.commit()
+
         #logger.info("Tour successfully created!")
         return jsonify({'message': 'Tour successfully created!'})
             
