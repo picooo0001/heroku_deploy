@@ -79,7 +79,7 @@ class User(db.Model):
     """Tabelle für Login Daten"""
     __tablename__ = 'users'
 
-    id = db.Column(db.nteger, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
     password_hash = db.Column(db.String(200), nullable=False)
 
