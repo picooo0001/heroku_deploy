@@ -22,10 +22,45 @@
                 <input type="password" id="inputPassword" class="form-control" placeholder="Passwort" required>
                 <button class="btn btn-lg btn-success btn-block" type="submit">Einloggen</button>
             </form>
+            <div class="col-md-6">
+                <form class="form-signin" id="registerForm" onsubmit="registerUser(); return false;">
+                    <!-- Registration Form -->
+                    <h1 class="h3 mb-3 font-weight-normal">Neuen Account erstellen:</h1>
+                    <label for="inputRegisterUsername" class="sr-only">Nutzername</label>
+                    <input type="text" id="inputRegisterUsername" class="form-control" placeholder="Nutzername" required>
+                    <label for="inputRegisterPassword" class="sr-only">Passwort</label>
+                    <input type="password" id="inputRegisterPassword" class="form-control" placeholder="Passwort" required>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Registrieren</button>
+                </form>
+            </div>
             <!--Div für die Popup Notification-->
             <div id="notification-container"></div>
         </div>
         <script>
+            function registerUser() {
+                const username = document.getElementById('inputRegisterUsername').value;
+                const password = document.getElementById('inputRegisterPassword').value;
+
+                fetch('/create_user', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password }),
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Weiterleitung oder andere Aktionen bei erfolgreicher Registrierung
+                        console.log('Registrierung erfolgreich');
+                    } else {
+                        // Fehlerbehandlung bei fehlgeschlagener Registrierung
+                        console.error('Registrierung fehlgeschlagen');
+                    }
+                })
+                .catch(error => {
+                    console.error('Fehler beim Senden der Registrierungsdaten:', error);
+                });
+            }
             // Funktion für den Login des Users. Username und PW werden durch ID rausgesucht und in neue Variablen gespeichert.
             function loginUser() {
                 const username = document.getElementById('inputUsername').value;
