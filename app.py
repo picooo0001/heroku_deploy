@@ -32,7 +32,7 @@ def to_dict(model):
 
 app = Flask(__name__, static_folder='static')
 app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ruznvsosywrlud:c570a6e2229b460bf4d6ec49a757b51008e9a7d2f7552503c4cd39af90d32f82@ec2-3-232-218-211.compute-1.amazonaws.com:5432/d88uvshvdne1bi'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://tyihcyuheerzvm:5faa9ef902111431e8bf9a8894c774bd9082f5cdcbe1d85d1b88fd98ec50cb8e@ec2-52-205-149-167.compute-1.amazonaws.com:5432/d1ptrq55iis955'
 app.secret_key = 'supersecretkey'
 
 db = SQLAlchemy(app)
