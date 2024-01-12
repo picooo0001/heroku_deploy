@@ -1,3 +1,4 @@
+## Description:
 This is the official repo which gets pushed on the heroku server. 
 There have been some complications with the old repo and heroku deployment, thats why this "thinner" repo is used for official deployment on heroku.
 The old repo switched to private now.
@@ -24,3 +25,5 @@ Structure:
   - Those are connected to Flask
   - There is a PostgreSQL database to save tours and modifications
   - The communication between Flask and the database is written with SQLAlchemy
+
+
